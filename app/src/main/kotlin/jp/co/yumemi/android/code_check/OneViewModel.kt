@@ -22,10 +22,7 @@ import java.util.*
 /**
  * TwoFragment で使う
  */
-class OneViewModel(
-    val context: Context
-) : ViewModel() {
-
+class OneViewModel(val context: Context) : ViewModel() {
     // 検索結果
     fun searchResults(inputText: String): List<Item> = runBlocking {
         val client = HttpClient(Android)
@@ -52,7 +49,7 @@ class OneViewModel(
                 val language = jsonItem.optString("language")
                 val stargazersCount = jsonItem.optLong("stargazers_count")
                 val watchersCount = jsonItem.optLong("watchers_count")
-                val forksCount = jsonItem.optLong("forks_conut")
+                val forksCount = jsonItem.optLong("forks_count")
                 val openIssuesCount = jsonItem.optLong("open_issues_count")
 
                 items.add(
@@ -83,5 +80,5 @@ data class Item(
     val stargazersCount: Long,
     val watchersCount: Long,
     val forksCount: Long,
-    val openIssuesCount: Long,
+    val openIssuesCount: Long
 ) : Parcelable
