@@ -25,16 +25,14 @@ class OneFragment: Fragment(R.layout.fragment_one){
         val viewModel= OneViewModel(context!!)
 
         val layoutManager= LinearLayoutManager(context!!)
-        val dividerItemDecoration=
-            DividerItemDecoration(context!!, layoutManager.orientation)
+        val dividerItemDecoration= DividerItemDecoration(context!!, layoutManager.orientation)
         val adapter= CustomAdapter(object : CustomAdapter.OnItemClickListener{
             override fun itemClick(item: Item){
                 gotoRepositoryFragment(item)
             }
         })
 
-        binding.searchInputText.
-            setOnEditorActionListener{ editText, action, _ ->
+        binding.searchInputText.setOnEditorActionListener{ editText, action, _ ->
                 if (action== EditorInfo.IME_ACTION_SEARCH){
                     editText.text.toString().let {
                         viewModel.searchResults(it).apply{
