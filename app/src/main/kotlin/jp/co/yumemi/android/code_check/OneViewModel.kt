@@ -27,7 +27,7 @@ class OneViewModel(val context: Context) : ViewModel() {
     fun searchResults(inputText: String): List<Item> = runBlocking {
         val client = HttpClient(Android)
 
-        return@runBlocking GlobalScope.async {
+        GlobalScope.async {
             val response: HttpResponse = client?.get("https://api.github.com/search/repositories") {
                 header("Accept", "application/vnd.github.v3+json")
                 parameter("q", inputText)
