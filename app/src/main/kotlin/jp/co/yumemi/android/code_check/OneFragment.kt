@@ -21,9 +21,7 @@ class OneFragment: Fragment(R.layout.fragment_one){
         super.onViewCreated(view, savedInstanceState)
 
         val binding= FragmentOneBinding.bind(view)
-
         val viewModel= OneViewModel(context!!)
-
         val layoutManager= LinearLayoutManager(context!!)
         val dividerItemDecoration= DividerItemDecoration(context!!, layoutManager.orientation)
         val adapter= CustomAdapter(object : CustomAdapter.OnItemClickListener{
@@ -33,7 +31,7 @@ class OneFragment: Fragment(R.layout.fragment_one){
         })
 
         binding.searchInputText.setOnEditorActionListener{ editText, action, _ ->
-                if (action== EditorInfo.IME_ACTION_SEARCH){
+            if (action== EditorInfo.IME_ACTION_SEARCH){
                     editText.text.toString().let {
                         viewModel.searchResults(it).apply{
                             adapter.submitList(this)
